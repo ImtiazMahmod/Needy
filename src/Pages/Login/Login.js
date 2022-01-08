@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import useFirebase from "./useFIrebase";
 
@@ -44,12 +45,21 @@ const Login = () => {
               >
                 <FcGoogle /> Google
               </Button>
+              <Link to="/">
+                {" "}
+                <Button
+                  className="w-100 my-2 btnRegular"
+                  variant="outline-warning"
+                >
+                  Back to Home
+                </Button>
+              </Link>
             </div>
           </Col>
           <Col md={8} className="d-none d-md-block">
             <img
               className="rounded img-fluid"
-              src="https://i.ibb.co/NZ4cV7r/saint-martin-aerial-view.jpg"
+              src="https://www.sam-solutions.com/blog/wp-content/uploads/2017/04/eCommerce-Website-Components-photo.jpg"
               alt=""
             />
           </Col>

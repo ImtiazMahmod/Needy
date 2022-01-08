@@ -11,6 +11,7 @@ import AllExplore from "./Pages/AllExplore/AllExplore";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
+import PrivateRoute from "./Pages/Login/PrivateRoute";
 
 function App() {
   return (
@@ -22,14 +23,48 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/explore" element={<AllExplore />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-            <Route path="pay" element={<Pay></Pay>}></Route>
-            <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
-            <Route path="review" element={<Review></Review>}></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path="pay"
+              element={
+                <PrivateRoute>
+                  <Pay />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="myOrders"
+              element={
+                <PrivateRoute>
+                  <MyOrders />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="review"
+              element={
+                <PrivateRoute>
+                  <Review />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
-          <Route path="/placeOrder/:productId" element={<PlaceOrder />}></Route>
+          <Route
+            path="/placeOrder/:productId"
+            element={
+              <PrivateRoute>
+                <PlaceOrder />
+              </PrivateRoute>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
