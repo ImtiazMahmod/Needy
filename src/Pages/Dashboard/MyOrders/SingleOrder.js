@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Button, Card } from "react-bootstrap";
-import Rating from "react-rating";
+import { MdDelete } from "react-icons/md";
 
 const SingleOrder = ({ order }) => {
-  //delete bike
+  console.log(order.status);
+  //delete Order
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -18,86 +19,53 @@ const SingleOrder = ({ order }) => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(
-            `https://nameless-fortress-10028.herokuapp.com/deleteOrder/${id}`
-          )
-          .then((res) => {
-            if (res.data.deletedCount) {
-              Swal.fire("Cancel!", "Your order has been deleted.", "success");
-            }
-          });
+        axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((res) => {
+          if (res.data.deletedCount) {
+            Swal.fire("Deleted!", "Your order has been deleted.", "success");
+          }
+        });
       }
     });
   };
-  console.log(order);
   return (
     <Card
-      sx={{
-        maxWidth: 345,
+      style={{
+        width: "15em",
         height: 470,
         borderRadius: "20px",
+        marginTop: "15px",
       }}
     >
       <Card.Body>
-        <div sx={{ mx: 3, mt: 1 }}>
-          {order?.status === "Pending" && (
-            <p variant="subtitle1">{order?.status}</p>
-          )}
-          {order?.status === "Shipped" && (
-            <p variant="subtitle1">{order?.status}</p>
-          )}
-          {order?.status === "Rejected" && (
-            <p variant="subtitle1">{order?.status}</p>
-          )}
+        <div className="mx-3 mt-1">
+          {order?.status === "Pending" && <p>{order?.status}</p>}
+          {order?.status === "Shipped" && <p>{order?.status}</p>}
         </div>
-        <img src={order?.bikeInfo?.img} height="auto" width="100%" alt="bike" />
+        <img
+          src={order?.productInfo?.img}
+          height="auto"
+          width="100%"
+          alt="bike"
+        />
       </Card.Body>
       <Card.Body>
         {" "}
-        <p sx={{ textAlign: "left" }} gutterBottom variant="h6" component="div">
-          {order?.bikeInfo?.title}
-        </p>
+        <h5 className=" text-start text-danger fw-bold">
+          {order?.productInfo?.title.slice(0, 18)}
+        </h5>
         <div sx={{ display: "flex", justifyContent: "space-between" }}>
-          <p gutterBottom variant="subtitle1" fontWeight="bold" component="div">
-            BDT {order?.bikeInfo?.price}
-          </p>
-          <Rating
-            sx={{ ms: "auto" }}
-            size="small"
-            color="tomato"
-            name="half-rating"
-            defaultValue={order?.bikeInfo?.rating}
-            readOnly
-          />
+          <p className="fs-5 text-secondary">৳ {order?.productInfo?.price}</p>
         </div>
-        <p
-          textAlign="left"
-          gutterBottom
-          sx={{ mt: 1 }}
-          variant="subtitle1"
-          component="div"
-        >
-          {order?.bikeInfo?.desc.slice(0, 50)}
+        <p className="text-start mt-1  text-secondary">
+          {order?.productInfo?.desc.slice(0, 50)}...
         </p>
       </Card.Body>
-      <Card.Body>
-        sx={{ my: 1, display: "flex", justifyContent: "space-between" }}
-        <Link to={`/purchase/${order?.bikeInfo?._id}`}>
-          <Button
-            variant="outlined"
-            size="small"
-            color="error"
-            sx={{ color: "tomato" }}
-          >
-            Details
-          </Button>
+      <Card.Body className="d-flex justify-content-between">
+        <Link to={`/placeOrder/${order?.productInfo?._id}`}>
+          <Button variant="warning ">Details</Button>
         </Link>
-        <Button
-          onClick={() => handleDelete(order?._id)}
-          sx={{ textAlign: "right" }}
-        >
-          {/* <BackspaceOutlined button color="error" /> */}
+        <Button onClick={() => handleDelete(order?._id)} variant="danger">
+          <MdDelete />
         </Button>
       </Card.Body>{" "}
     </Card>

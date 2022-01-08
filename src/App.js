@@ -7,10 +7,10 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Pay from "./Pages/Dashboard/Pay/Pay";
 import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import Review from "./Pages/Dashboard/Review/Review";
-import Explore from "./Pages/Explore/Explore";
 import AllExplore from "./Pages/AllExplore/AllExplore";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
+import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
             <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
             <Route path="review" element={<Review></Review>}></Route>
           </Route>
+          <Route path="/placeOrder/:productId" element={<PlaceOrder />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -12,16 +12,14 @@ const AllExplore = () => {
 
   ///load all Products
   useEffect(() => {
-    axios
-      .get("https://obscure-forest-04277.herokuapp.com/allTour")
-      .then((res) => {
-        if (res.data) {
-          setProducts(res.data);
-          setIsLoading(false);
-        } else {
-          setIsLoading(true);
-        }
-      });
+    axios.get("http://localhost:5000/products").then((res) => {
+      if (res.data) {
+        setProducts(res.data);
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+      }
+    });
   }, []);
   return (
     <div style={{ position: "relative" }}>
@@ -40,10 +38,10 @@ const AllExplore = () => {
             <h1>Your Choice</h1>
           </div>
           <Row xs={1} className="g-4" sm={1} md={2} lg={4}>
-            {products?.map((tour) => (
-              <Col key={tour?._id}>
+            {products?.map((product) => (
+              <Col key={product?._id}>
                 {" "}
-                <Explore tour={tour}></Explore>{" "}
+                <Explore product={product}></Explore>{" "}
               </Col>
             ))}
           </Row>

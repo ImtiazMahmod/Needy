@@ -3,32 +3,33 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Explore.css";
 
-const Explore = (tour) => {
-  console.log(tour);
+const Explore = ({ product }) => {
   return (
     <div>
-      <Card className="tourCard border-0 shadow rounded">
-        <Link className="text-decoration-none" to={`/tour/${tour?._id}`}>
+      <Card className="exploreCard border-0 shadow rounded">
+        <Link className="text-decoration-none" to={`/tour/${product?._id}`}>
           <div>
             <Card.Img
               style={{ height: "200px" }}
-              className="img-fluid rounded"
+              className="p-2 rounded"
               variant="top"
-              src={tour?.img1}
+              src={product?.img}
             />
           </div>
         </Link>
         <Card.Body>
           <div className="d-flex justify-content-between">
             <Card.Title className="cartTitle  fw-bold primaryColor">
-              {tour?.title}
+              {product?.title?.slice(0, 15)}...
             </Card.Title>
-            <Card.Title className="text-secondary">৳{tour?.fee}</Card.Title>
+            <Card.Title className="text-secondary">
+              ৳{product?.price}
+            </Card.Title>
           </div>
           <Card.Text className="text-secondary text-start border-top py-2">
-            {tour?.desc?.slice(0, 50)}...
+            {product?.desc?.slice(0, 50)}...
           </Card.Text>
-          <Link to={`/placeOrder/${tour?._id}`}>
+          <Link to={`/placeOrder/${product?._id}`}>
             <Button variant="outline-warning ">Book Now</Button>
           </Link>
         </Card.Body>

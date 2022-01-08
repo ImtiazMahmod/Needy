@@ -8,16 +8,19 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
 
   const { user } = useFirebase();
+
   //load specific user orders
+
   useEffect(() => {
     axios
-      .get(
-        `https://nameless-fortress-10028.herokuapp.com/myOrders?email=${user?.email}`
-      )
+      .get(`http://localhost:5000/myOrders?email=${user?.email}`)
       .then((res) => {
         setMyOrders(res.data);
       });
   }, [myOrders]);
+
+  console.log(myOrders);
+
   return (
     <div>
       <h3 variant="h4" sx={{ fontWeight: "bold", my: 3 }}>

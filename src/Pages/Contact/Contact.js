@@ -7,14 +7,8 @@ import MainNavbar from "../Shared/Navbar/Navbar";
 import emailjs from "emailjs-com";
 import { IoMdSend } from "react-icons/io";
 const Contact = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data, e) => {
-    console.log(data, e);
     emailjs
       .send(
         "service_lt17chc",
@@ -56,6 +50,7 @@ const Contact = () => {
               type="text"
               required
               placeholder="Your Name"
+              style={{ outline: "none" }}
               className="m-2 mb-4 p-2 rounded border-0 shadow w-75"
             />{" "}
             <br />
@@ -64,6 +59,7 @@ const Contact = () => {
               type="email"
               placeholder="your email"
               required
+              style={{ outline: "none" }}
               className="m-2 mb-4 p-2 rounded border-0 shadow w-75"
             />{" "}
             <br />
@@ -71,6 +67,7 @@ const Contact = () => {
               required
               rows="3"
               label="Review"
+              style={{ outline: "none" }}
               placeholder="Put your Idea."
               className="m-2 mb-4 p-2 rounded border-0 shadow w-75"
               {...register("message")}

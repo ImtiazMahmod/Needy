@@ -11,30 +11,24 @@ const Review = () => {
   const { user } = useFirebase();
   const [rate, setRate] = useState(2);
   console.log(rate);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     data.rating = rate;
+    console.log(data);
     ///review post to server
-    axios
-      .post("https://nameless-fortress-10028.herokuapp.com/review", data)
-      .then((res) => {
-        if (res.data.insertedId) {
-          Swal.fire({
-            title: "Review",
-            text: "Your valuable review sent.",
-            icon: "success",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Yes",
-          });
-          reset();
-        }
-      });
+    axios.post("http://localhost:5000/review", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Review",
+          text: "Your valuable review sent.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Yes",
+        });
+        reset();
+      }
+    });
   };
 
   return (
@@ -55,39 +49,29 @@ const Review = () => {
             <Rating
               initialRating={rate}
               className="text-warning fs-2 my-3"
-              onChange={(event, newRate) => {
-                setRate(newRate);
+              onChange={(rate) => {
+                setRate(rate);
               }}
               {...{
-                emptySymbol: (
-                  <AiOutlineStar className="material-icons">
-                    star_border
-                  </AiOutlineStar>
-                ),
-                fullSymbol: (
-                  <AiFillStar className="material-icons">star_rate</AiFillStar>
-                ),
-                fractions: 2,
+                emptySymbol: <AiOutlineStar>star_border</AiOutlineStar>,
+                fullSymbol: <AiFillStar>star_rate</AiFillStar>,
               }}
             />
           </div>
           <input
             label="Name"
             required
+            style={{ outline: "none" }}
             className="m-2 p-2 rounded border-0 shadow w-75"
             value={user?.displayName}
             {...register("name")}
           />
 
-          {errors.quantity?.type === "min" && (
-            <p color="error" sx={{ textAlign: "left" }}>
-              Please input minimum 1
-            </p>
-          )}
-          <input
+          <textarea
             required
             label="Review"
-            defaultValue={rate}
+            rows={5}
+            style={{ outline: "none" }}
             placeholder="Your review here"
             className="m-2 mb-4 p-2 rounded border-0 shadow w-75"
             {...register("review")}
