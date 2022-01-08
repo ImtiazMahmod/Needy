@@ -1,0 +1,10 @@
+.tourCard {
+  transition: transform ease-in 0.2s;
+  height: 390px;
+}
+.tourCard:hover {
+  transform: scale(1.05);
+}
+.cartTitle:hover {
+  color: #ee875e;
+}

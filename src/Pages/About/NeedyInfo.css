@@ -1,0 +1,21 @@
+.needyInfo {
+  background-image: linear-gradient(
+      rgba(22, 22, 22, 0.5),
+      rgba(212, 192, 101, 0.5)
+    ),
+    url("https://blog.shift4shop.com/hubfs/iStock-1051616786.jpg");
+  background-size: cover;
+}
+
+.info {
+  background-color: white;
+  transition: transform ease-in 0.2s;
+}
+.info:hover {
+  transform: translateY(-10px);
+}
+.infoIcon {
+  color: #ffb52d;
+  margin: 20px auto;
+  font-size: 3rem;
+}
