@@ -19,19 +19,21 @@ const OrderProduct = ({ product }) => {
     data.productInfo = product;
     console.log(data);
     ///post for book tour
-    axios.post("http://localhost:5000/orderProduct", data).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Order Placed Successfully",
-          text: "WOW, you are Ordered Product.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Yes",
-        });
+    axios
+      .post("https://sleepy-headland-99200.herokuapp.com/orderProduct", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Order Placed Successfully",
+            text: "WOW, you are Ordered Product.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes",
+          });
 
-        reset();
-      }
-    });
+          reset();
+        }
+      });
   };
   const date = new Date().toISOString().substring(0, 10);
 

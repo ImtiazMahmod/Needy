@@ -13,7 +13,9 @@ const MyOrders = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myOrders?email=${user?.email}`)
+      .get(
+        `https://sleepy-headland-99200.herokuapp.com/myOrders?email=${user?.email}`
+      )
       .then((res) => {
         setMyOrders(res.data);
       });

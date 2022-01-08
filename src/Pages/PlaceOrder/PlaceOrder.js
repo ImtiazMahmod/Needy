@@ -11,9 +11,11 @@ const PlaceOrder = () => {
   const [product, setProduct] = useState({});
   ///load specific tour
   useEffect(() => {
-    axios.get(`http://localhost:5000/product/${productId}`).then((res) => {
-      setProduct(res.data);
-    });
+    axios
+      .get(`https://sleepy-headland-99200.herokuapp.com/product/${productId}`)
+      .then((res) => {
+        setProduct(res.data);
+      });
   }, [productId]);
   console.log(productId);
   return (

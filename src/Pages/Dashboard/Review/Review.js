@@ -17,18 +17,20 @@ const Review = () => {
     data.rating = rate;
     console.log(data);
     ///review post to server
-    axios.post("http://localhost:5000/review", data).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Review",
-          text: "Your valuable review sent.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Yes",
-        });
-        reset();
-      }
-    });
+    axios
+      .post("https://sleepy-headland-99200.herokuapp.com/review", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Review",
+            text: "Your valuable review sent.",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes",
+          });
+          reset();
+        }
+      });
   };
 
   return (

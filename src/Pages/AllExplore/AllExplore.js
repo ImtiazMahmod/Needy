@@ -12,14 +12,16 @@ const AllExplore = () => {
 
   ///load all Products
   useEffect(() => {
-    axios.get("http://localhost:5000/products").then((res) => {
-      if (res.data) {
-        setProducts(res.data);
-        setIsLoading(false);
-      } else {
-        setIsLoading(true);
-      }
-    });
+    axios
+      .get("https://sleepy-headland-99200.herokuapp.com/products")
+      .then((res) => {
+        if (res.data) {
+          setProducts(res.data);
+          setIsLoading(false);
+        } else {
+          setIsLoading(true);
+        }
+      });
   }, []);
   return (
     <div style={{ position: "relative" }}>

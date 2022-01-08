@@ -19,11 +19,15 @@ const SingleOrder = ({ order }) => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((res) => {
-          if (res.data.deletedCount) {
-            Swal.fire("Deleted!", "Your order has been deleted.", "success");
-          }
-        });
+        axios
+          .delete(
+            `https://sleepy-headland-99200.herokuapp.com/deleteOrder/${id}`
+          )
+          .then((res) => {
+            if (res.data.deletedCount) {
+              Swal.fire("Deleted!", "Your order has been deleted.", "success");
+            }
+          });
       }
     });
   };
