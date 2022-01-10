@@ -2,24 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import Explore from "../Explore/Explore";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../Redux/Slice/needySlice";
+import { useSelector } from "react-redux";
 
 const HomeExplore = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const [products, setProducts] = useState([]);
+  // // const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.needy.products);
   console.log(products);
+
   ///load all Products
   useEffect(() => {
-    axios
-      .get("https://sleepy-headland-99200.herokuapp.com/products")
-      .then((res) => {
-        if (res.data) {
-          setProducts(res.data);
-          setIsLoading(false);
-        } else {
-          setIsLoading(true);
-        }
-      });
+    dispatch(fetchProducts()).then((products) => {
+      if (products) {
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+      }
+    });
   }, []);
   return (
     <div style={{ position: "relative" }}>

@@ -1,28 +1,28 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import Explore from "../Explore/Explore";
+import { fetchProducts } from "../Redux/Slice/needySlice";
 import Footer from "../Shared/Footer/Footer";
 import MainNavbar from "../Shared/Navbar/Navbar";
 
 const AllExplore = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.needy.products);
 
   ///load all Products
   useEffect(() => {
-    axios
-      .get("https://sleepy-headland-99200.herokuapp.com/products")
-      .then((res) => {
-        if (res.data) {
-          setProducts(res.data);
-          setIsLoading(false);
-        } else {
-          setIsLoading(true);
-        }
-      });
+    dispatch(fetchProducts()).then((products) => {
+      if (products) {
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+      }
+    });
   }, []);
+
   return (
     <div style={{ position: "relative" }}>
       <MainNavbar></MainNavbar>

@@ -1,16 +1,15 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyCoSOGOhZzi1HQWyIkTlu0LLrSN4FrbrBo",
+  apiKey: process.env.REACT_APP_APIKEY,
 
-  authDomain: "needy-bd.firebaseapp.com",
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
 
-  projectId: "needy-bd",
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
 
-  storageBucket: "needy-bd.appspot.com",
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
 
-  messagingSenderId: "305141898229",
+  appId: process.env.REACT_APP_APPID,
 
-  appId: "1:305141898229:web:a82e3e7839dd3a30485ebc",
-
-  measurementId: "G-4QQG3JL9NL",
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
 export default firebaseConfig;

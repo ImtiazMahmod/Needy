@@ -8,7 +8,9 @@ function PrivateRoute({ children }) {
   const location = useLocation();
   console.log(user.email);
   if (isLoading) {
-    return <Spinner animation="grow" variant="danger" />;
+    return (
+      <Spinner className="spinnerStyle" animation="grow" variant="danger" />
+    );
   }
   if (user?.email) {
     return children;
