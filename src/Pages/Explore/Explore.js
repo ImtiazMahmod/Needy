@@ -7,7 +7,7 @@ const Explore = ({ product }) => {
   return (
     <div>
       <Card className="exploreCard border-0 shadow rounded">
-        <Link className="text-decoration-none" to={`/tour/${product?._id}`}>
+        <Link className="text-decoration-none" to={`/placeOrder/${product?._id}`}>
           <div>
             <Card.Img
               style={{ height: "200px" }}
@@ -30,7 +30,7 @@ const Explore = ({ product }) => {
             {product?.desc?.slice(0, 50)}...
           </Card.Text>
           <Link to={`/placeOrder/${product?._id}`}>
-            <Button variant="outline-warning ">Book Now</Button>
+            <Button variant="outline-warning ">Buy Now</Button>
           </Link>
         </Card.Body>
       </Card>

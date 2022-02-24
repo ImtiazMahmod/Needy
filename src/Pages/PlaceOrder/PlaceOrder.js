@@ -9,7 +9,7 @@ import OrderProduct from "./OrderProduct";
 const PlaceOrder = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
-  ///load specific tour
+  ///load specific product
   useEffect(() => {
     axios
       .get(`https://sleepy-headland-99200.herokuapp.com/product/${productId}`)

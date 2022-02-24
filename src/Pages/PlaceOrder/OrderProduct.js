@@ -18,7 +18,7 @@ const OrderProduct = ({ product }) => {
     data.status = "pending";
     data.productInfo = product;
     console.log(data);
-    ///post for book tour
+    ///post for Buy product
     axios
       .post("https://sleepy-headland-99200.herokuapp.com/orderProduct", data)
       .then((res) => {
@@ -121,7 +121,7 @@ const OrderProduct = ({ product }) => {
 
         <input
           className="btn fw-bold m-2 btnRegular"
-          value="Book Now"
+          value="Buy Now"
           type="submit"
         />
       </form>
